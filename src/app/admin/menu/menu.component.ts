@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from "../../service/user.service";
 
 @Component({
   selector: 'app-menu',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  user_name: string | any
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.user_name = localStorage.getItem('user')
   }
   sidebarToggle() {
 
@@ -20,8 +23,8 @@ export class MenuComponent implements OnInit {
       return
     }
 
-      sidebar!.style.display = "none";
-    
+    sidebar!.style.display = "none";
+
   }
 
   profileToggle() {
@@ -31,5 +34,11 @@ export class MenuComponent implements OnInit {
     } else {
       profileDropdown!.style.display = "block";
     }
+  }
+
+  logOut() {
+    console.log(1);
+    localStorage.removeItem('user')
+    this.userService.logOut()
   }
 }

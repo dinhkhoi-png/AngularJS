@@ -21,16 +21,20 @@
         <div class="col-lg-4 col-sm-6 col-12">
             <div class="widgets-wrap float-md-end">
                 <div class="widget-header  me-3">
-                    <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></a>
+                    <a href="#" class="icon icon-sm rounded-circle border">
+                      <i class="fa fa-shopping-cart"></i>
+                    </a>
                     <span class="badge badge-pill badge-danger notify">0</span>
                 </div>
                 <div class="widget-header icontext">
-                    <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
+                    <a (click)="logOut()" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
                     <div class="text">
-                        <span class="text-muted">Welcome!</span>
-                        <div> 
-                          <a [routerLink]="['/login']">Sign in</a> |  
-                            <a [routerLink]="['/Register']"> Register</a>
+                        <span *ngIf="login == true" class="text-muted">
+                          Welcome! {{user}}
+                        </span>
+                        <div *ngIf="login== false"> 
+                          <a [routerLink]="['/admin/login']">Sign in</a> |  
+                            <a [routerLink]="['/admin/register']"> Register</a>
                         </div>
                     </div>
                 </div>
@@ -56,7 +60,7 @@
                <a routerLink="/home"class="nav-link" >Home</a>
             </li>
             <li class="nav-item">
-              <a routerLink="/admin" class="nav-link" href="#">admin</a>
+              <a routerLink="/admin" class="nav-link" *ngIf="login == true" >admin</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Supermarket</a>

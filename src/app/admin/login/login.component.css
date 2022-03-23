@@ -62,3 +62,8 @@
     text-decoration: underline!important;
     cursor: pointer;
     }
+
+
+    .error{
+        color: red;
+    }

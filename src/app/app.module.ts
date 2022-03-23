@@ -25,7 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { EditItemComponent } from './admin/edit-item/edit-item.component';
 import { RegisterComponent } from './admin/register/register.component';
-
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 
 
@@ -55,7 +55,8 @@ import { RegisterComponent } from './admin/register/register.component';
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
-    SweetAlert2Module
+    SweetAlert2Module,
+    AngularFireAuthModule
   ],
   providers: [
     ScreenTrackingService,UserTrackingService
