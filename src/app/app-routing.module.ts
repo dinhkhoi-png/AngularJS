@@ -7,6 +7,8 @@ import { ContentadminComponent } from './admin/contentadmin/contentadmin.compone
 import { LoginComponent } from './admin/login/login.component';
 import { EditItemComponent } from './admin/edit-item/edit-item.component';
 import { RegisterComponent } from './admin/register/register.component';
+import { AuthGuard } from "./service/auth.guard";
+
 
 const routes: Routes = [
   //redirec ve home
@@ -25,11 +27,18 @@ const routes: Routes = [
     children:[
       {
         path:'',
-        component: ContentadminComponent
+        component: ContentadminComponent,
+        canActivate:[AuthGuard], 
+        
       },
       {
         path:'add',
-        component: AddProductComponent
+        component: AddProductComponent,
+        canActivate:[AuthGuard], 
+      },
+      {
+        path:'register',
+        component: RegisterComponent
       },
       {
         path:'login',
@@ -37,12 +46,11 @@ const routes: Routes = [
       },
       {
         path:'edit',
-        component: EditItemComponent
+        component: EditItemComponent,
+        canActivate:[AuthGuard], 
       },
-      {
-        path:'register',
-        component: RegisterComponent
-      }
+    
+     
     ]
   },
  

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from "../../service/user.service";
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -6,23 +9,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  userForm:FormGroup | any
 
-  constructor() { }
-   //show hide div variables
-   userlogin = true;
-   userregister = false;
-   //Buttons clicks functionalities 
-   user_register()
-   {
-     this.userlogin = false;
-     this.userregister = true;
-   }
-   user_login()
-   {
-     this.userlogin = true;
-     this.userregister = false;
-   }
+  constructor(private userService:UserService  ) { }
+  
   ngOnInit(): void {
+    this.initForm()
   }
+
+  initForm() {
+    this.userForm = new FormGroup({
+      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
+    })
+  }
+
+
+  
+  onSubmit(userForm: NgForm) {
+    if (userForm.status == 'VALID') {
+        let email = userForm.value.email
+        let password = userForm.value.password
+       this.userService.login(email,password)
+    }
+
+}
+
 
 }
